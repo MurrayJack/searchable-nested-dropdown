@@ -54,11 +54,19 @@ describe("Searchable Nested Dropdown", () => {
             Folder: true
           }
         },
+        OnChange: jest.fn(),
         Placeholder: "Please select a value"
       };
 
       const control = enzyme.mount(<SearchableNestedDropdown {...props} />);
+      
       expect(control.find("[title='Remove Value']").length).toEqual(1);
+      expect(props.OnChange).toHaveBeenCalledTimes(0);
+
+      // clicking on this button should fire the OnChange Event
+      control.find("[title='Remove Value']").simulate("click")
+      expect(props.OnChange).toHaveBeenCalledTimes(1);
+      expect(props.OnChange).toHaveBeenLastCalledWith(undefined);
     });
 
     it("having no value should not show you a button to clear the value", () => {

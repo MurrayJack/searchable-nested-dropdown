@@ -45,11 +45,21 @@ function App() {
     <div className="App">
       <h1>Searchable Nested Dropdown</h1>
       
-      <SearchableNestedDropdown 
-        Data={Data} 
-        Placeholder="Please enter some data"
-        OnPageRequest={handlePageRequest} />
-        
+      <ul>
+        <li>
+          <SearchableNestedDropdown 
+            Data={Data} 
+            Placeholder="Please enter some data"
+            OnPageRequest={handlePageRequest} />
+        </li>
+        <li>
+          <SearchableNestedDropdown 
+            Data={Data} 
+            Value={{ Item: { Caption: "Value Caption" } }}
+            Placeholder="Please enter some data"
+            OnPageRequest={handlePageRequest} />
+        </li>
+      </ul>
     </div>
   );
 }
