@@ -44,7 +44,12 @@ function App() {
   return (
     <div className="App">
       <h1>Searchable Nested Dropdown</h1>
-      <SearchableNestedDropdown Data={Data} OnPageRequest={handlePageRequest} />
+      
+      <SearchableNestedDropdown 
+        Data={Data} 
+        Placeholder="Please enter some data"
+        OnPageRequest={handlePageRequest} />
+        
     </div>
   );
 }
