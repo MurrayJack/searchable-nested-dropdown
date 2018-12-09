@@ -6,7 +6,7 @@ enzyme.configure({ adapter: new EnzymeAdapter() });
 
 import { SearchableNestedDropdown } from ".";
 
-describe("<Searchable Nester Dropdown", () => {
+describe("Searchable Nested Dropdown", () => {
   describe("Value Tests", () => {
       it("having a value should show it when the control is closed", () => {
         const props = {

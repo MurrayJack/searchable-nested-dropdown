@@ -119,10 +119,10 @@ const HeaderSearch = ({ OnCloseClick }) => {
 };
 
 const HeaderCaption = ({ Placeholder, Value, OnCloseClick }) => {
-  return Value ? (
+  return Value && Value.Item ? (
       <snd.Caption>{Value.Item.Caption}</snd.Caption>
   ) : (
-    <div>{Placeholder}</div>
+    <snd.Placeholder>{Placeholder}</snd.Placeholder>
   );
 };
 
