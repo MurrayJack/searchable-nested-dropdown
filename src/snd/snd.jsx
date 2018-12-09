@@ -8,7 +8,23 @@ import {
   MdCropSquare
 } from "react-icons/md";
 
-export const SearchableNestedDropdown = ({ Data, OnPageRequest }) => {
+/*
+IItem: {
+  Caption: string,
+  ID: number,
+  Folder: boolean
+}
+
+IValue: {
+  Item: IItem, 
+  Parent: IItem,
+}
+
+
+*/
+
+
+export const SearchableNestedDropdown = ({ Value, Data, OnPageRequest }) => {
   const [state, setControlState] = useState("Close");
   const [currentFolder, setCurrentFolderData] = useState(Data);
   const [value, setValue] = useState(null);
