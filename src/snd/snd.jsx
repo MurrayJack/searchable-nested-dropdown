@@ -5,7 +5,8 @@ import {
   MdSearch,
   MdFolder,
   MdKeyboardArrowRight,
-  MdCropSquare
+  MdCropSquare,
+  MdHighlightOff
 } from "react-icons/md";
 
 /*
@@ -118,12 +119,14 @@ const HeaderSearch = ({ OnCloseClick }) => {
   ];
 };
 
-const HeaderCaption = ({ Placeholder, Value, OnCloseClick }) => {
+const HeaderCaption = ({ Placeholder, Value, OnValueClear }) => {
   return Value && Value.Item ? (
     <React.Fragment>
       <snd.Caption>{Value.Item.Caption}</snd.Caption>
       <snd.IconWrapper>
-        <button onClick={OnCloseClick}>&amp;</button>
+        <button onClick={OnValueClear} title="Remove Value">
+          <MdHighlightOff />
+        </button>
       </snd.IconWrapper>
     </React.Fragment>
   ) : (

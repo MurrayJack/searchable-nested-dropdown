@@ -58,7 +58,7 @@ describe("Searchable Nested Dropdown", () => {
       };
 
       const control = enzyme.mount(<SearchableNestedDropdown {...props} />);
-      expect(control.find("[aria-label='Remove Value']").length).toEqual(1);
+      expect(control.find("[title='Remove Value']").length).toEqual(1);
     });
 
     it("having no value should not show you a button to clear the value", () => {
@@ -67,7 +67,7 @@ describe("Searchable Nested Dropdown", () => {
         };
   
         const control = enzyme.mount(<SearchableNestedDropdown {...props} />);
-        expect(control.find("[aria-label='Remove Value']").length).toEqual(0);
+        expect(control.find("[title='Remove Value']").length).toEqual(0);
       });
   });
 });
