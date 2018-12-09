@@ -12,9 +12,7 @@ export const Header = styled.div`
   border-radius: 3px;
   display: flex;
   height: 40px;
-
-  // open
-  border-radius: 3px 3px 0px 0px;
+  align-items: center;
 `;
 
 const Dropdown_Animation = keyframes`
@@ -63,6 +61,13 @@ export const IconWrapper = styled.span`
 
 export const Caption = styled.span`
   flex: 1;
+  margin-left: 5px;
+`;
+
+export const Placeholder = styled.span`
+  flex: 1;
+  margin-left: 5px;
+  color: #999;
 `;
 
 export const Item = styled.li`
