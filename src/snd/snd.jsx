@@ -61,6 +61,12 @@ export const SearchableNestedDropdown = ({
     setControlState("Open");
   };
 
+  const handleOnValueClear = (e) => {
+    e.stopPropagation();
+    OnChange(undefined);
+    setValue(undefined);
+  }
+
   return (
     <snd.Wrapper>
       <Header
@@ -69,6 +75,7 @@ export const SearchableNestedDropdown = ({
         Placeholder={Placeholder}
         OnCloseClick={handleCloseControl}
         OnOpenClick={handleOnOpenClick}
+        OnValueClear={handleOnValueClear}
       />
 
       {state === "Open" ? (
@@ -91,14 +98,14 @@ export const SearchableNestedDropdown = ({
 - In Value Mode
 */
 
-const Header = ({ Mode, Value, Placeholder, OnCloseClick, OnOpenClick }) => {
+const Header = ({ Mode, Value, Placeholder, OnValueClear, OnCloseClick, OnOpenClick }) => {
   return (
     <snd.Header tabIndex={0} onClick={OnOpenClick}>
       {Mode === "Value" ? (
         <HeaderCaption
           Placeholder={Placeholder}
           Value={Value}
-          OnCloseClick={OnCloseClick}
+          OnValueClear={OnValueClear}
         />
       ) : null}
     </snd.Header>

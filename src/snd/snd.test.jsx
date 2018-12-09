@@ -67,6 +67,10 @@ describe("Searchable Nested Dropdown", () => {
       control.find("[title='Remove Value']").simulate("click")
       expect(props.OnChange).toHaveBeenCalledTimes(1);
       expect(props.OnChange).toHaveBeenLastCalledWith(undefined);
+
+      expect(control.find("HeaderPlaceholderValue").text()).toEqual(
+        "Please select a value"
+      );
     });
 
     it("having no value should not show you a button to clear the value", () => {

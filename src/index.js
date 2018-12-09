@@ -57,7 +57,8 @@ function App() {
             Data={Data} 
             Value={{ Item: { Caption: "Value Caption" } }}
             Placeholder="Please enter some data"
-            OnPageRequest={handlePageRequest} />
+            OnPageRequest={handlePageRequest}
+            OnChange={()=> alert("OnChange")} />
         </li>
       </ul>
     </div>
