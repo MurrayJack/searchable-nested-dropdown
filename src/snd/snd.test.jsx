@@ -59,7 +59,7 @@ describe("Searchable Nested Dropdown", () => {
       };
 
       const control = enzyme.mount(<SearchableNestedDropdown {...props} />);
-      
+
       expect(control.find("[title='Remove Value']").length).toEqual(1);
       expect(props.OnChange).toHaveBeenCalledTimes(0);
 
@@ -74,12 +74,35 @@ describe("Searchable Nested Dropdown", () => {
     });
 
     it("having no value should not show you a button to clear the value", () => {
-        const props = {
-          Placeholder: "Please select a value"
-        };
-  
-        const control = enzyme.mount(<SearchableNestedDropdown {...props} />);
-        expect(control.find("[title='Remove Value']").length).toEqual(0);
-      });
+      const props = {
+        Placeholder: "Please select a value"
+      };
+
+      const control = enzyme.mount(<SearchableNestedDropdown {...props} />);
+      expect(control.find("[title='Remove Value']").length).toEqual(0);
+    });
   });
+
+  describe("Open and close tests", () => {
+    it("control should start closed", () => {
+      expect(1).toEqual(0);
+    });
+
+    it("control should open on click", () => {
+      expect(1).toEqual(0);
+    });
+
+    it("control should close on escape key", () => {
+      expect(1).toEqual(0);
+    });
+
+    it("control should close on clicking the background / document", () => {
+      expect(1).toEqual(0);
+    });
+
+    it("control should close on select", () => {
+      expect(1).toEqual(0);
+    });
+
+  })
 });
