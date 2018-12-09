@@ -8,36 +8,78 @@ import { SearchableNestedDropdown } from ".";
 
 describe("Searchable Nested Dropdown", () => {
   describe("Value Tests", () => {
-      it("having a value should show it when the control is closed", () => {
+    it("having a value should show it when the control is closed", () => {
+      const props = {
+        Value: {
+          Item: {
+            Caption: "Value Caption",
+            ID: 1,
+            Folder: false
+          },
+          Parent: {
+            Caption: "Parent Caption",
+            ID: 0,
+            Folder: true
+          }
+        },
+        Placeholder: "Please select a value"
+      };
+
+      const control = enzyme.mount(<SearchableNestedDropdown {...props} />);
+      expect(control.find("HeaderCaptionValue").text()).toEqual("Value Caption");
+    });
+
+    it("having no value should show the control placeholder", () => {
+      const props = {
+        Placeholder: "Please select a value"
+      };
+
+      const control = enzyme.mount(<SearchableNestedDropdown {...props} />);
+      expect(control.find("HeaderPlaceholderValue").text()).toEqual(
+        "Please select a value"
+      );
+    });
+
+    it("having a value should show the clear button and clicking on it should cleare the contol", () => {
+      const props = {
+        Value: {
+          Item: {
+            Caption: "Value Caption",
+            ID: 1,
+            Folder: false
+          },
+          Parent: {
+            Caption: "Parent Caption",
+            ID: 0,
+            Folder: true
+          }
+        },
+        OnChange: jest.fn(),
+        Placeholder: "Please select a value"
+      };
+
+      const control = enzyme.mount(<SearchableNestedDropdown {...props} />);
+      
+      expect(control.find("[title='Remove Value']").length).toEqual(1);
+      expect(props.OnChange).toHaveBeenCalledTimes(0);
+
+      // clicking on this button should fire the OnChange Event
+      control.find("[title='Remove Value']").simulate("click")
+      expect(props.OnChange).toHaveBeenCalledTimes(1);
+      expect(props.OnChange).toHaveBeenLastCalledWith(undefined);
+
+      expect(control.find("HeaderPlaceholderValue").text()).toEqual(
+        "Please select a value"
+      );
+    });
+
+    it("having no value should not show you a button to clear the value", () => {
         const props = {
-            Value: {
-                Item: {
-                    Caption: "Value Caption",
-                    ID: 1,
-                    Folder: false
-                },
-                Parent: {
-                    Caption: "Parent Caption",
-                    ID: 0,
-                    Folder: true
-                }
-            },
-            Placeholder: "Please select a value",
-        }
-
-        const control = enzyme.mount(<SearchableNestedDropdown {...props}/>)
-        expect(control.find("HeaderCaption").text()).toEqual("Value Caption");
+          Placeholder: "Please select a value"
+        };
+  
+        const control = enzyme.mount(<SearchableNestedDropdown {...props} />);
+        expect(control.find("[title='Remove Value']").length).toEqual(0);
       });
-
-      it("having no value should show the control placeholder", () => {
-        const props = {
-            Placeholder: "Please select a value",
-        }
-
-        const control = enzyme.mount(<SearchableNestedDropdown {...props}/>)
-        expect(control.find("HeaderCaption").text()).toEqual("Please select a value");
-      });
-
-    // having a value should show the clear button and clicking on it should cleare the contol
   });
 });

@@ -63,12 +63,15 @@ export const Caption = styled.span`
   flex: 1;
   margin-left: 5px;
 `;
+Caption.displayName = "HeaderCaptionValue";
 
 export const Placeholder = styled.span`
   flex: 1;
   margin-left: 5px;
   color: #999;
 `;
+Placeholder.displayName = "HeaderPlaceholderValue";
+
 
 export const Item = styled.li`
   height: 40px;
