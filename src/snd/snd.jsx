@@ -23,16 +23,17 @@ IValue: {
 
 */
 
-
-export const SearchableNestedDropdown = ({ Value, Data, OnPageRequest }) => {
+export const SearchableNestedDropdown = ({
+  Value /*: IValue */,
+  Data /*: IItem[] */,
+  Placeholder /* string */,
+  OnPageRequest /*: (item: IItem) => Promise<IItem[]>  */,
+  OnChange /*: (item: IItem) => void */
+}) => {
+  const [value, setValue] = useState(Value);
   const [state, setControlState] = useState("Close");
   const [currentFolder, setCurrentFolderData] = useState(Data);
-  const [value, setValue] = useState(null);
   const [mode, setMode] = useState("Value");
-  const [location, setLocation] = useState({
-    Parent: undefined,
-    Location: undefined
-  });
 
   const handleFolderClick = Item => {
     OnPageRequest(Item, newData => {
@@ -57,11 +58,18 @@ export const SearchableNestedDropdown = ({ Value, Data, OnPageRequest }) => {
 
   const handleOnOpenClick = () => {
     setControlState("Open");
-  }
+  };
 
   return (
     <snd.Wrapper>
-      <Header Mode={mode} Value={value} OnCloseClick={handleCloseControl} OnOpenClick={handleOnOpenClick} />
+      <Header
+        Mode={mode}
+        Value={value}
+        Placeholder={Placeholder}
+        OnCloseClick={handleCloseControl}
+        OnOpenClick={handleOnOpenClick}
+      />
+
       {state === "Open" ? (
         <Dropdown
           Data={currentFolder}
@@ -82,14 +90,16 @@ export const SearchableNestedDropdown = ({ Value, Data, OnPageRequest }) => {
 - In Value Mode
 */
 
-const Header = ({ Mode, Location, Value, OnClearSearch, OnCloseClick, OnOpenClick }) => {
+const Header = ({ Mode, Value, Placeholder, OnCloseClick, OnOpenClick }) => {
   return (
-    <snd.Header tabindex={0} onClick={OnOpenClick}>
-      {Mode === "Search" ? <HeaderSearch OnCloseClick={OnCloseClick} /> : null}
+    <snd.Header tabIndex={0} onClick={OnOpenClick}>
       {Mode === "Value" ? (
-        <HeaderValue Value={Value} OnCloseClick={OnCloseClick} />
+        <HeaderCaption
+          Placeholder={Placeholder}
+          Value={Value}
+          OnCloseClick={OnCloseClick}
+        />
       ) : null}
-      {Mode === "Folder" ? <HeaderFolder OnCloseClick={OnCloseClick} /> : null}
     </snd.Header>
   );
 };
@@ -108,14 +118,12 @@ const HeaderSearch = ({ OnCloseClick }) => {
   ];
 };
 
-const HeaderValue = ({ Value, OnCloseClick }) => {
-  return Value ? [
-    <snd.Caption>{Value.Caption}</snd.Caption>,
-
-    <snd.IconWrapper>
-      <button onClick={OnCloseClick}>X</button>
-    </snd.IconWrapper>
-  ] : <div>hello</div>;
+const HeaderCaption = ({ Placeholder, Value, OnCloseClick }) => {
+  return Value && Value.Item ? (
+      <snd.Caption>{Value.Item.Caption}</snd.Caption>
+  ) : (
+    <snd.Placeholder>{Placeholder}</snd.Placeholder>
+  );
 };
 
 const HeaderFolder = ({ Location, Parent, OnCloseClick }) => {
