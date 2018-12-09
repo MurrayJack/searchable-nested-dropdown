@@ -26,7 +26,7 @@ describe("Searchable Nested Dropdown", () => {
       };
 
       const control = enzyme.mount(<SearchableNestedDropdown {...props} />);
-      expect(control.find("HeaderCaption").text()).toEqual("Value Caption");
+      expect(control.find("HeaderCaptionValue").text()).toEqual("Value Caption");
     });
 
     it("having no value should show the control placeholder", () => {
@@ -35,7 +35,7 @@ describe("Searchable Nested Dropdown", () => {
       };
 
       const control = enzyme.mount(<SearchableNestedDropdown {...props} />);
-      expect(control.find("HeaderCaption").text()).toEqual(
+      expect(control.find("HeaderPlaceholderValue").text()).toEqual(
         "Please select a value"
       );
     });

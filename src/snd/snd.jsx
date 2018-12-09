@@ -120,7 +120,12 @@ const HeaderSearch = ({ OnCloseClick }) => {
 
 const HeaderCaption = ({ Placeholder, Value, OnCloseClick }) => {
   return Value && Value.Item ? (
+    <React.Fragment>
       <snd.Caption>{Value.Item.Caption}</snd.Caption>
+      <snd.IconWrapper>
+        <button onClick={OnCloseClick}>&amp;</button>
+      </snd.IconWrapper>
+    </React.Fragment>
   ) : (
     <snd.Placeholder>{Placeholder}</snd.Placeholder>
   );
