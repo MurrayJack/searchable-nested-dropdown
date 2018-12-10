@@ -12,6 +12,7 @@
     "react-hotkeys": "^1.1.4",
     "react-icons": "3.2.2",
     "react-scripts": "2.0.3",
+    "simulant": "^0.2.2",
     "styled": "1.0.0",
     "styled-components": "4.1.2"
   },

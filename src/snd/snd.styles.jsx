@@ -72,7 +72,6 @@ export const Placeholder = styled.span`
 `;
 Placeholder.displayName = "HeaderPlaceholderValue";
 
-
 export const Item = styled.li`
   height: 40px;
   display: flex;

@@ -1,5 +1,6 @@
 import * as React from "react";
 import * as enzyme from "enzyme";
+import simulant from "simulant";
 
 import EnzymeAdapter from "enzyme-adapter-react-16";
 enzyme.configure({ adapter: new EnzymeAdapter() });
@@ -103,6 +104,18 @@ describe("Searchable Nested Dropdown", () => {
       expect(control.find("Dropdown").length).toEqual(1);
     });
 
+    it("control should open on down arrow", () => {
+      const props = {
+        Placeholder: "Please select a value"
+      };
+
+      const control = enzyme.mount(<SearchableNestedDropdown {...props} />);
+      simulant.fire(control.find("Header").getDOMNode() , "keypress", { keyCode: 40, which: 40, key: "ArrowDown" });
+
+      expect(control.find("Dropdown").length).toEqual(1);
+    });
+
+
     it("control should close on escape key", () => {
       const props = {
         Placeholder: "Please select a value"
@@ -111,19 +124,21 @@ describe("Searchable Nested Dropdown", () => {
       const control = enzyme.mount(<SearchableNestedDropdown {...props} />);
 
       control.find("Header").simulate("click");
+
+      simulant.fire(control.find("Header").getDOMNode() , "click");
       expect(control.find("Dropdown").length).toEqual(1);
 
-      control.find("Header").simulate("keyup", { keycode: 13 });
+      simulant.fire(control.find("Header").getDOMNode() , "keypress", { key: "esc" });
       expect(control.find("Dropdown").length).toEqual(0);
     });
 
-    it("control should close on clicking the background / document", () => {
-      // expect(1).toEqual(0);
-    });
+    // it("control should close on clicking the background / document", () => {
+    //   // expect(1).toEqual(0);
+    // });
 
-    it("control should close on select", () => {
-      //expect(1).toEqual(0);
-    });
+    // it("control should close on select", () => {
+    //   //expect(1).toEqual(0);
+    // });
 
   })
 });

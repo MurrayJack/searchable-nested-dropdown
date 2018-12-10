@@ -52,11 +52,8 @@ export const SearchableNestedDropdown = ({
   };
 
   const handleCloseControl = () => {
-    if (state === "Open") {
-      setControlState("Close");
-    } else {
-      setControlState("Open");
-    }
+    console.log("handleCloseControl");
+    setControlState("Close");
   };
 
   const handleOnOpenClick = () => {
@@ -77,8 +74,7 @@ export const SearchableNestedDropdown = ({
         Placeholder={Placeholder}
         OnCloseClick={handleCloseControl}
         OnOpenClick={handleOnOpenClick}
-        OnValueClear={handleOnValueClear}
-      />
+        OnValueClear={handleOnValueClear} />
 
       {state === "Open" ? (
         <Dropdown
@@ -106,9 +102,14 @@ const Header = ({ Mode, Value, Placeholder, OnValueClear, OnCloseClick, OnOpenCl
     'down': OnOpenClick
   }
 
+  const keyMap = {
+    open: 'down',
+    close: 'esc'
+  }
+
   return (
-    <HotKeys handlers={handlers}>
-      <snd.Header tabIndex={0} onClick={OnOpenClick}>
+    <HotKeys onKeyPress={()=> console.log("here")} keyMap={keyMap} handlers={handlers} onClick={OnOpenClick} tabIndex={0}>
+      <snd.Header >
         {Mode === "Value" ? (
           <HeaderCaption
             Placeholder={Placeholder}
