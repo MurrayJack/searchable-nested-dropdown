@@ -1,6 +1,8 @@
 import * as React from "react";
 import * as snd from "./snd.styles.jsx";
 import { useState, useEffect } from "react";
+import { HotKeys } from 'react-hotkeys';
+
 import {
   MdSearch,
   MdFolder,
@@ -99,16 +101,23 @@ export const SearchableNestedDropdown = ({
 */
 
 const Header = ({ Mode, Value, Placeholder, OnValueClear, OnCloseClick, OnOpenClick }) => {
+  const handlers = {
+    'esc': OnCloseClick,
+    'down': OnOpenClick
+  }
+
   return (
-    <snd.Header tabIndex={0} onClick={OnOpenClick}>
-      {Mode === "Value" ? (
-        <HeaderCaption
-          Placeholder={Placeholder}
-          Value={Value}
-          OnValueClear={OnValueClear}
-        />
-      ) : null}
-    </snd.Header>
+    <HotKeys handlers={handlers}>
+      <snd.Header tabIndex={0} onClick={OnOpenClick}>
+        {Mode === "Value" ? (
+          <HeaderCaption
+            Placeholder={Placeholder}
+            Value={Value}
+            OnValueClear={OnValueClear}
+          />
+        ) : null}
+      </snd.Header>
+    </HotKeys>
   );
 };
 
@@ -137,8 +146,8 @@ const HeaderCaption = ({ Placeholder, Value, OnValueClear }) => {
       </snd.IconWrapper>
     </React.Fragment>
   ) : (
-    <snd.Placeholder>{Placeholder}</snd.Placeholder>
-  );
+      <snd.Placeholder>{Placeholder}</snd.Placeholder>
+    );
 };
 
 const HeaderFolder = ({ Location, Parent, OnCloseClick }) => {
@@ -155,12 +164,12 @@ const Dropdown = ({ Data, OnFolderClick, OnItemClick }) => (
   <snd.Dropdown>
     {Data
       ? Data.map(item =>
-          item.Folder ? (
-            <Folder Item={item} OnFolderClick={OnFolderClick} />
-          ) : (
+        item.Folder ? (
+          <Folder Item={item} OnFolderClick={OnFolderClick} />
+        ) : (
             <Item Item={item} OnItemClick={OnItemClick} />
           )
-        )
+      )
       : null}
   </snd.Dropdown>
 );
