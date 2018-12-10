@@ -82,4 +82,27 @@ describe("Searchable Nested Dropdown", () => {
         expect(control.find("[title='Remove Value']").length).toEqual(0);
       });
   });
+
+  describe("Open and close tests.", () => {
+    it("When you have no value and you click on the control you enter the search.", () => {
+        expect(0).toEqual(1);
+    });
+
+    it("when search is shown and the button us clicked ", () => {
+        expect(0).toEqual(1);
+    });
+  });
+
+  describe("Search tests.", () => { 
+    it("", () => {
+        expect(0).toEqual(1);
+    });
+  });
+
+// feature tests.
+//   describe("", () => { 
+//     it("", () => {
+//         expect(0).toEqual(1);
+//     });
+//   });
 });
